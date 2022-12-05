@@ -43,5 +43,17 @@
       socket.onopen();
       
     }
+    setInterval(function(){
+      if (document.visibilityState == "hidden"){
+        socket.send(JSON.stringify({
+          'active': false,
+        }));
+      }else if (document.visibilityState == "visible"){
+        socket.send(JSON.stringify({
+          'active': true,
+        }));
+      }
+    }, 1000);
+
   </script>
 {% endblock script %}
